@@ -2,7 +2,7 @@
 
 ## 部署 bucket
 ```
-scoop bucket add https://github.com/ztj-fork/Scoop-JetBrains
+scoop bucket add jetbrains https://github.com/ztj-fork/Scoop-JetBrains
 ```
 
 ## 更新 bucket
