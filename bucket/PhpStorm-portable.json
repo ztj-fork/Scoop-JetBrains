@@ -8,17 +8,16 @@
     },
     "url": [
         "https://download.jetbrains.com/webide/PhpStorm-2019.3.1.exe#/cosi.7z",
-        "https://raw.githubusercontent.com/ztj-fork/Scoop-JetBrains/master/scripts/portable.ps1",
         "https://github.com/pingfangx/jetbrains-in-chinese/raw/master/PhpStorm/resources_zh_CN_PhpStorm_2019.3_r1.jar"
     ],
     "hash": [
         "6bd2f227da708f07a64682d4b4af6619f6816175e5b1d9200b5273c8d841d9d8",
-        "5b43fc8a57d7d8d519071a50849a5db92c90ecdf56b64ac57f15fdae5b4f0572",
         "61b5d5e9fec7a9845737c9fd6f38975a1d7249fe78e415f86910a664753237b4"
     ],
     "extract_to": "IDE",
     "installer": {
         "script": [
+            "Copy-Item \"$bucketsdir\\$bucket\\scripts\\portable.ps1\" \"$dir\"",
             "& \"$dir\\portable.ps1\" $dir $persist_dir",
             "Remove-Item \"$dir\\IDE\\`$*\", \"$dir\\portable.ps1\" -Force -Recurse",
             "Move-Item \"$dir\\resources_zh_CN_PhpStorm_2019.3_r1.jar\" \"$dir\\IDE\\lib\""
