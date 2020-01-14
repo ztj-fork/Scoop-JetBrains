@@ -11,9 +11,7 @@ param([Parameter(Mandatory)][String] $Directory, [Parameter(Mandatory)][String] 
 
 $properties = Join-Path 'IDE' 'bin\idea.properties'
 
-if (-not (Join-Path $Persist $properties | Test-Path)) {
-    Write-Host 'File' $properties 'does not exists. Creating.' -ForegroundColor Yellow
-
+if (Join-Path $Persist $properties | Test-Path) {
     $fullProp = Join-path $Directory $properties
     $currentForward = (Split-Path $Directory | Join-Path -ChildPath 'current') -replace '\\', '/'
     $profileDir = "$currentForward/profile"
@@ -26,4 +24,10 @@ if (-not (Join-Path $Persist $properties | Test-Path)) {
     $CONT = $CONT -replace '^#\s*(idea.log.path=).*$', '$1${idea.system.path}/log'
 
     Set-Content $fullProp $CONT -Encoding Ascii -Force
+} else {
+    $properties = Join-Path $Persist $properties
+    Write-Host "Software portable processing failed." -ForegroundColor Red
+    Write-Host "properties file does not exist." -ForegroundColor Red
+    Write-Host "directory: $properties" -ForegroundColor Red
+    exit 1
 }
